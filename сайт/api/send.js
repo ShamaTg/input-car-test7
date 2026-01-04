@@ -4,7 +4,7 @@ export default async function handler(req, res) {
     const { name, phone, email, service, car, desc, 'g-recaptcha-response': captchaResponse } = req.body;
 
     // 1. Проверка капчи через Google
-    const secretKey = "6LfRYz8sAAAAAIeUSw5gdTituYAhzey3CetNHU43";
+    const secretKey = "6LeRwj8sAAAAAHZcpj4C57s6Ow8G7kr0dGP_246Z";
     const verifyUrl = `https://www.google.com/recaptcha/api/siteverify?secret=${secretKey}&response=${captchaResponse}`;
     
     const recaptchaRes = await fetch(verifyUrl, { method: 'POST' });
@@ -42,4 +42,5 @@ export default async function handler(req, res) {
     } catch (err) {
         return res.status(500).send("Kļūda sūtot uz Telegram");
     }
+
 }
