@@ -1,406 +1,435 @@
 <!DOCTYPE html>
 <html lang="lv">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Input Cars | Detailing & Repair</title>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
-    
-    <style>
-        :root {
-            --main-font: 'Inter', sans-serif;
-            --accent-font: 'Orbitron', sans-serif;
-            --accent-color: #00d2ff;
-            --bg-dark: #050505;
-        }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Input Cars | Detailing & Repair</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    
+    <style>
+        :root {
+            --main-font: 'Inter', sans-serif;
+            --accent-font: 'Orbitron', sans-serif;
+            --accent-color: #00d2ff;
+            --bg-dark: #050505;
+        }
 
-        body { font-family: var(--main-font); background: var(--bg-dark); color: #fff; margin: 0; }
+        body { font-family: var(--main-font); background: var(--bg-dark); color: #fff; margin: 0; }
 
-        /* ШАПКА С ФОНОМ */
-        .hero-section {
-            padding: 100px 20px 60px;
-            text-align: center;
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.9)), url('img/hero-bg.jpg');
-            background-size: cover;
-            background-position: center;
-            border-bottom: 2px solid var(--accent-color);
-        }
+        /* ШАПКА С ФОНОМ */
+        .hero-section {
+            padding: 100px 20px 60px;
+            text-align: center;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.9)), url('img/hero-bg.jpg');
+            background-size: cover;
+            background-position: center;
+            border-bottom: 2px solid var(--accent-color);
+        }
 
-        .main-title {
-            font-family: var(--accent-font);
-            font-size: 3rem;
-            margin: 15px 0;
-            background: linear-gradient(to right, #fff, var(--accent-color));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0 0 15px rgba(0, 210, 255, 0.4));
-        }
+        .main-title {
+            font-family: var(--accent-font);
+            font-size: 3rem;
+            margin: 15px 0;
+            background: linear-gradient(to right, #fff, var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 0 15px rgba(0, 210, 255, 0.4));
+        }
 
-        /* КНОПКА ЗАПИСИ ПРЕМИУМ */
-        .btn-book-main {
-            font-family: var(--accent-font);
-            padding: 18px 45px;
-            font-size: 15px;
-            background: linear-gradient(45deg, #0088ff, var(--accent-color));
-            border: none;
-            color: white;
-            border-radius: 50px;
-            cursor: pointer;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            transition: all 0.4s ease;
-            box-shadow: 0 4px 15px rgba(0, 210, 255, 0.3);
-            margin-top: 20px;
-        }
-        .btn-book-main:hover {
-            transform: scale(1.05) translateY(-3px);
-            box-shadow: 0 8px 25px rgba(0, 210, 255, 0.5);
-        }
+        /* КНОПКА ЗАПИСИ ПРЕМИУМ */
+        .btn-book-main {
+            font-family: var(--accent-font);
+            padding: 18px 45px;
+            font-size: 15px;
+            background: linear-gradient(45deg, #0088ff, var(--accent-color));
+            border: none;
+            color: white;
+            border-radius: 50px;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: all 0.4s ease;
+            box-shadow: 0 4px 15px rgba(0, 210, 255, 0.3);
+            margin-top: 20px;
+        }
+        .btn-book-main:hover {
+            transform: scale(1.05) translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 210, 255, 0.5);
+        }
 
-        /* БЛОК ПОЧЕМУ МЫ */
-        .why-grid-new {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 15px;
-            margin-top: 20px;
-        }
-        .why-card {
-            background: rgba(255,255,255,0.03);
-            padding: 25px;
-            border-radius: 15px;
-            border-left: 3px solid var(--accent-color);
-            transition: 0.3s;
-            text-align: left;
-        }
-        .why-card:hover { background: rgba(255,255,255,0.07); transform: translateY(-5px); }
-        .why-card i { color: var(--accent-color); font-size: 24px; margin-bottom: 15px; display: block; }
-        .why-card h3 { font-family: var(--accent-font); font-size: 13px; color: var(--accent-color); margin: 0 0 8px 0; }
-        .why-card p { font-size: 13px; color: #ccc; margin: 0; line-height: 1.5; }
+        /* БЛОК ПОЧЕМУ МЫ */
+        .why-grid-new {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .why-card {
+            background: rgba(255,255,255,0.03);
+            padding: 25px;
+            border-radius: 15px;
+            border-left: 3px solid var(--accent-color);
+            transition: 0.3s;
+            text-align: left;
+        }
+        .why-card:hover { background: rgba(255,255,255,0.07); transform: translateY(-5px); }
+        .why-card i { color: var(--accent-color); font-size: 24px; margin-bottom: 15px; display: block; }
+        .why-card h3 { font-family: var(--accent-font); font-size: 13px; color: var(--accent-color); margin: 0 0 8px 0; }
+        .why-card p { font-size: 13px; color: #ccc; margin: 0; line-height: 1.5; }
 
-        /* ПОРТФОЛИО */
-        .portfolio-grid-premium {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 12px;
-            padding: 0 10px;
-        }
-        .port-item {
-            position: relative;
-            border-radius: 15px;
-            overflow: hidden;
-            border: 1px solid #222;
-            height: 200px;
-            transition: 0.4s ease;
-        }
-        .port-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: 0.6s ease;
-        }
-        .port-item:hover {
-            border-color: var(--accent-color);
-            box-shadow: 0 0 20px rgba(0, 210, 255, 0.3);
-            transform: translateY(-5px);
-        }
-        .port-item:hover img { transform: scale(1.1); }
-        .port-overlay {
-            position: absolute;
-            bottom: 10px;
-            left: 10px;
-            background: rgba(0,0,0,0.75);
-            padding: 5px 12px;
-            border-radius: 8px;
-            border: 1px solid var(--accent-color);
-            font-family: var(--accent-font);
-            font-size: 9px;
-            color: #fff;
-            pointer-events: none;
-            backdrop-filter: blur(4px);
-        }
+        /* ПРЕМИУМ ПОРТФОЛИО СТИЛИ */
+        .portfolio-grid-premium {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            padding: 0 10px;
+        }
+        .port-item {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            border: 1px solid #222;
+            height: 200px;
+            transition: 0.4s ease;
+        }
+        .port-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 0.6s ease;
+        }
+        .port-item:hover {
+            border-color: var(--accent-color);
+            box-shadow: 0 0 20px rgba(0, 210, 255, 0.3);
+            transform: translateY(-5px);
+        }
+        .port-item:hover img { transform: scale(1.1); }
+        .port-overlay {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            background: rgba(0,0,0,0.75);
+            padding: 5px 12px;
+            border-radius: 8px;
+            border: 1px solid var(--accent-color);
+            font-family: var(--accent-font);
+            font-size: 9px;
+            color: #fff;
+            pointer-events: none;
+            backdrop-filter: blur(4px);
+        }
 
-        /* НАВИГАЦИЯ */
-        .nav-panel {
-            background: linear-gradient(145deg, #0a0a0a, #111) !important;
-            border: 1px solid #222 !important;
-            padding: 30px 20px !important;
-            border-radius: 20px;
-        }
-        .maps-grid-solid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 15px;
-            margin-bottom: 25px;
-        }
-        .map-card {
-            text-decoration: none;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 10px;
-            transition: all 0.4s ease;
-        }
-        .map-icon-circle {
-            width: 60px;
-            height: 60px;
-            background: #151515;
-            border: 1px solid #333;
-            border-radius: 18px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-            color: #fff;
-        }
-        .map-card span { font-size: 10px; color: #888; font-weight: bold; letter-spacing: 1px; }
-        
-        .map-card.waze:hover .map-icon-circle { background: #33CCFF; color: #000; }
-        .map-card.google:hover .map-icon-circle { background: #4285F4; color: #fff; }
-        .map-card.apple:hover .map-icon-circle { background: #fff; color: #000; }
+        /* СОЛИДНАЯ НАВИГАЦИЯ СТИЛИ */
+        .nav-panel {
+            background: linear-gradient(145deg, #0a0a0a, #111) !important;
+            border: 1px solid #222 !important;
+            padding: 30px 20px !important;
+            border-radius: 20px;
+        }
+        .maps-grid-solid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+        .map-card {
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.4s ease;
+        }
+        .map-icon-circle {
+            width: 60px;
+            height: 60px;
+            background: #151515;
+            border: 1px solid #333;
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: #fff;
+            transition: 0.3s;
+        }
+        .map-card span { font-size: 10px; color: #888; font-weight: bold; letter-spacing: 1px; }
+        
+        .map-card.waze:hover .map-icon-circle { background: #33CCFF; color: #000; box-shadow: 0 0 20px rgba(51, 204, 255, 0.4); border-color: #33CCFF; }
+        .map-card.google:hover .map-icon-circle { background: #4285F4; color: #fff; box-shadow: 0 0 20px rgba(66, 133, 244, 0.4); border-color: #4285F4; }
+        .map-card.apple:hover .map-icon-circle { background: #fff; color: #000; box-shadow: 0 0 20px rgba(255, 255, 255, 0.4); border-color: #fff; }
+        .map-card:hover span { color: #fff; }
 
-        /* AI WIDGET */
-        .ai-chat-widget { position: fixed; bottom: 20px; right: 20px; z-index: 10000; }
-        .ai-btn { width: 60px; height: 60px; background: var(--accent-color); border-radius: 50%; border: none; cursor: pointer; font-size: 24px; box-shadow: 0 0 15px var(--accent-color); }
-        .ai-window { 
-            position: absolute; bottom: 75px; right: 0; width: 300px; height: 400px; 
-            background: #111; border: 1px solid #333; border-radius: 20px; 
-            display: none; flex-direction: column; overflow: hidden;
-        }
-        .ai-window.active { display: flex; }
-        .ai-header { background: #222; padding: 15px; font-family: var(--accent-font); font-size: 12px; text-align: center; border-bottom: 1px solid #333; }
-        .ai-body { flex: 1; padding: 15px; overflow-y: auto; font-size: 13px; }
-        .ai-input-box { display: flex; padding: 10px; background: #000; }
-        .ai-input-box input { flex: 1; background: #222; border: none; padding: 10px; color: #fff; border-radius: 10px; }
+        .address-footer {
+            border-top: 1px solid #222;
+            padding-top: 20px;
+            color: var(--accent-color);
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
 
-        /* MODAL */
-        .modal-bg-overlay {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background-image: url('img/form-banner.jpg');
-            background-size: cover; background-position: center;
-            filter: brightness(0.2); z-index: -1;
-        }
-        .success-toast {
-            position: absolute; top: 50%; left: 50%; transform: translate(-50%, 150%);
-            width: 85%; background: #000; border: 2px solid var(--accent-color);
-            border-radius: 20px; padding: 25px; z-index: 100; opacity: 0; visibility: hidden;
-            transition: 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            text-align: center;
-        }
-        .success-toast.active { opacity: 1; visibility: visible; transform: translate(-50%, -50%); }
-        #bookingForm.blur-effect { filter: blur(6px); opacity: 0.15; pointer-events: none; }
-        
-        /* ПРЕВЬЮ КАРТИНКИ */
-        #imagePreviewContainer {
-            display: none;
-            width: 100%;
-            margin-bottom: 12px;
-            border-radius: 12px;
-            overflow: hidden;
-            border: 1px solid var(--accent-color);
-        }
-        #imagePreview { width: 100%; height: auto; display: block; }
-    </style>
+        /* AI WIDGET */
+        .ai-chat-widget { position: fixed; bottom: 20px; right: 20px; z-index: 10000; }
+        .ai-btn { width: 60px; height: 60px; background: var(--accent-color); border-radius: 50%; border: none; cursor: pointer; font-size: 24px; box-shadow: 0 0 15px var(--accent-color); }
+        .ai-window { 
+            position: absolute; bottom: 75px; right: 0; width: 300px; height: 400px; 
+            background: #111; border: 1px solid #333; border-radius: 20px; 
+            display: none; flex-direction: column; overflow: hidden;
+        }
+        .ai-window.active { display: flex; }
+        .ai-header { background: #222; padding: 15px; font-family: var(--accent-font); font-size: 12px; text-align: center; border-bottom: 1px solid #333; }
+        .ai-body { flex: 1; padding: 15px; overflow-y: auto; font-size: 13px; }
+        .ai-input-box { display: flex; padding: 10px; background: #000; }
+        .ai-input-box input { flex: 1; background: #222; border: none; padding: 10px; color: #fff; border-radius: 10px; }
+
+        /* АНКЕТА И ВЫЕЗЖАЮЩАЯ ТАБЛИЧКА */
+        .modal-bg-overlay {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background-image: url('img/form-banner.jpg');
+            background-size: cover; background-position: center;
+            filter: brightness(0.2); z-index: -1;
+        }
+        .success-toast {
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, 150%);
+            width: 85%; background: #000; border: 2px solid var(--accent-color);
+            border-radius: 20px; padding: 25px; z-index: 100; opacity: 0; visibility: hidden;
+            transition: 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .success-toast.active { opacity: 1; visibility: visible; transform: translate(-50%, -50%); }
+        #bookingForm.blur-effect { filter: blur(6px); opacity: 0.15; pointer-events: none; }
+        #progressBar { width: 0%; height: 4px; background: #28a745; transition: 40s linear; margin-top: 15px; }
+
+    </style>
 </head>
 <body>
 
-    <nav class="top-nav">
-        <div class="nav-content">
-            <div class="brand-logo" style="font-family: var(--accent-font);">INPUT CARS</div>
-            <div class="lang-selector">
-                <button onclick="changeLang('lv')">LV</button>
-                <button onclick="changeLang('ru')">RU</button>
-            </div>
-        </div>
-    </nav>
+    <nav class="top-nav">
+        <div class="nav-content">
+            <div class="brand-logo" style="font-family: var(--accent-font);">INPUT CARS</div>
+            <div class="lang-selector">
+                <button onclick="changeLang('lv')">LV</button>
+                <button onclick="changeLang('ru')">RU</button>
+            </div>
+        </div>
+    </nav>
 
-   <main id="main-content">
-        <header class="hero-section">
-            <img src="logo.png" alt="Logo" style="width: 100px;">
-            <h1 class="main-title">INPUT CARS</h1>
-            <p style="color: #888; font-size: 12px; letter-spacing: 2px;">BEYOND DETAILING</p>
-            <button class="btn-book-main" onclick="openBooking()">PIETEIKTIES</button>
-        </header>
+   <main id="main-content">
+        <header class="hero-section">
+            <img src="logo.png" alt="Logo" style="width: 100px;">
+            <h1 class="main-title">INPUT CARS</h1>
+            <p style="color: #888; font-size: 12px; letter-spacing: 2px;">BEYOND DETAILING</p>
+            <button class="btn-book-main" onclick="openBooking()">PIETEIKTIES</button>
+        </header>
 
-        <section class="info-block">
-            <div class="glass-box" style="background:rgba(255,255,255,0.02); border: 1px solid #222; padding: 20px; border-radius: 15px; text-align: center; margin: 20px auto; max-width: 90%;">
-                <h3 style="font-family: var(--accent-font); font-size: 14px; color: var(--accent-color);">🕒 DARBA LAIKS</h3>
-                <p>P-Pk: <b>09:00 - 18:00</b> | S: <b>10:00 - 15:00</b></p>
-                <p>Svētdiena: <span style="color: #ff4444;">Slēgts</span></p>
-            </div>
-        </section>
+        <section class="info-block" style="padding: 25px 15px;">
+            <div class="glass-box" style="background:rgba(255,255,255,0.02); border: 1px solid #222; padding: 20px; border-radius: 15px; text-align: center;">
+                <h3 style="font-family: var(--accent-font); font-size: 14px; color: var(--accent-color);">🕒 DARBA LAIKS</h3>
+                <p>P-Pk: <b>09:00 - 18:00</b> | S: <b>10:00 - 15:00</b></p>
+                <p>Svētdiena: <span style="color: #ff4444;">Slēgts</span></p>
+            </div>
+        </section>
 
-        <section class="info-block">
-            <h2 class="sec-title" style="text-align: center; color: var(--accent-color); font-family: var(--accent-font);">KĀPĒC IZVĒLĒTIES MŪS</h2>
-            <div class="why-grid-new" style="padding: 0 20px;">
-                <div class="why-card">
-                    <i class="fas fa-gem"></i>
-                    <h3>BEZKOMPROMISU KVALITĀTE</h3>
-                    <p>Mēs neatzīstam pusdarbu. Katrs automobilis iziet cauri stingrai kontrolei.</p>
-                </div>
-                <div class="why-card">
-                    <i class="fas fa-user-tie"></i>
-                    <h3>PROFESIONĀLA PIEREDZE</h3>
-                    <p>Mūsu meistari ir savas jomas fanātiķi ar gadu pieredzi.</p>
-                </div>
-                <div class="why-card">
-                    <i class="fas fa-shield-halved"></i>
-                    <h3>GARANTIJA UN DROŠĪBA</h3>
-                    <p>Mēs uzņemamies pilnu atbildību par jūsu auto un darba rezultātu.</p>
-                </div>
-                <div class="why-card">
-                    <i class="fas fa-microchip"></i>
-                    <h3>MODERNAS TEHNOLOĢIJAS</h3>
-                    <p>Izmantojam jaunāko aprīkojumu un inovatīvus kopšanas līцеди.</p>
-                </div>
-            </div>
-        </section>
+        <section class="info-block" style="padding: 20px;">
+            <h2 class="sec-title" style="text-align: center; color: var(--accent-color); font-family: var(--accent-font);">KĀPĒC IZVĒLĒTIES MŪS</h2>
+            <div class="why-grid-new">
+                <div class="why-card">
+                    <i class="fas fa-gem"></i>
+                    <h3>BEZKOMPROMISU KVALITĀTE</h3>
+                    <p>Mēs neatzīstam pusdarbu. Katrs automobilis iziet cauri stingrai kontrolei.</p>
+                </div>
+                <div class="why-card">
+                    <i class="fas fa-user-tie"></i>
+                    <h3>PROFESIONĀLA PIEREDZE</h3>
+                    <p>Mūsu meistari ir savas jomas fanātiķi ar gadu pieredzi.</p>
+                </div>
+                <div class="why-card">
+                    <i class="fas fa-shield-halved"></i>
+                    <h3>GARANTIJA UN DROŠĪBA</h3>
+                    <p>Mēs uzņemamies pilnu atbildību par jūsu auto un darba rezultātu.</p>
+                </div>
+                <div class="why-card">
+                    <i class="fas fa-microchip"></i>
+                    <h3>MODERNAS TEHNOLOĢIJAS</h3>
+                    <p>Izmantojam jaunāko aprīkojumu un inovatīvus kopšanas līdzekļus.</p>
+                </div>
+            </div>
+        </section>
 
-        <section class="info-block">
-            <h2 class="sec-title" style="text-align: center; color: var(--accent-color); font-family: var(--accent-font); margin: 40px 0 20px;">MŪSU DARBI</h2>
-            <div class="portfolio-grid-premium">
-                <div class="port-item"><img src="img/1.jpg"><div class="port-overlay">PREMIUM DETAILING</div></div>
-                <div class="port-item"><img src="img/2.jpg"><div class="port-overlay">PAINT CORRECTION</div></div>
-                <div class="port-item"><img src="img/3.jpg"><div class="port-overlay">CERAMIC COATING</div></div>
-                <div class="port-item"><img src="img/4.jpg"><div class="port-overlay">INTERIOR CLEANING</div></div>
-            </div>
-        </section>
+        <section class="info-block">
+            <h2 class="sec-title" style="text-align: center; color: var(--accent-color); font-family: var(--accent-font); margin-bottom: 20px;">PAKALPOJUMI</h2>
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; padding: 0 10px;">
+                <div class="s-mini-card" style="background: #111; padding: 15px 5px; border-radius: 12px; border: 1px solid #222; text-align: center;">
+                    <i class="fas fa-magic" style="color: var(--accent-color); font-size: 1.5rem; margin-bottom: 8px; display: block;"></i>
+                    <p style="font-size: 0.75rem; font-weight: bold;">Detailing</p>
+                </div>
+                <div class="s-mini-card" style="background: #111; padding: 15px 5px; border-radius: 12px; border: 1px solid #222; text-align: center;">
+                    <i class="fas fa-tools" style="color: var(--accent-color); font-size: 1.5rem; margin-bottom: 8px; display: block;"></i>
+                    <p style="font-size: 0.75rem; font-weight: bold;">Remonts</p>
+                </div>
+                <div class="s-mini-card" style="background: #111; padding: 15px 5px; border-radius: 12px; border: 1px solid #222; text-align: center;">
+                    <i class="fas fa-circle-dot" style="color: var(--accent-color); font-size: 1.5rem; margin-bottom: 8px; display: block;"></i>
+                    <p style="font-size: 0.75rem; font-weight: bold;">Riepas</p>
+                </div>
+            </div>
+        </section>
 
-        <section class="info-block" style="padding: 40px 20px;">
-            <h2 class="sec-title" style="text-align: center; color: var(--accent-color); font-family: var(--accent-font); margin-bottom: 20px;">ATRAST MŪS</h2>
-            <div class="nav-panel">
-                <div class="maps-grid-solid">
-                    <a href="https://waze.com/ul?ll=57.3937,21.5647&navigate=yes" class="map-card waze">
-                        <div class="map-icon-circle"><i class="fab fa-waze"></i></div>
-                        <span>WAZE</span>
-                    </a>
-                    <a href="https://www.google.com/maps/search/?api=1&query=Brīvības+iela+23,Ventspils" class="map-card google">
-                        <div class="map-icon-circle"><i class="fas fa-location-dot"></i></div>
-                        <span>GOOGLE</span>
-                    </a>
-                    <a href="https://maps.apple.com/?address=Brīvības+iela+23,Ventspils" class="map-card apple">
-                        <div class="map-icon-circle"><i class="fab fa-apple"></i></div>
-                        <span>APPLE</span>
-                    </a>
-                </div>
-                <div class="address-footer" style="text-align: center; color: #888;">
-                    <i class="fas fa-map-marker-alt"></i> Brīvības iela 23, Ventspils
-                </div>
-            </div>
-        </section>
+        <section class="info-block">
+            <h2 class="sec-title" style="text-align: center; color: var(--accent-color); font-family: var(--accent-font); margin-bottom: 20px;">MŪSU DARBI</h2>
+            <div class="portfolio-grid-premium">
+                <div class="port-item">
+                    <img src="img/1.jpg">
+                    <div class="port-overlay">PREMIUM DETAILING</div>
+                </div>
+                <div class="port-item">
+                    <img src="img/2.jpg">
+                    <div class="port-overlay">PAINT CORRECTION</div>
+                </div>
+                <div class="port-item">
+                    <img src="img/3.jpg">
+                    <div class="port-overlay">CERAMIC COATING</div>
+                </div>
+                <div class="port-item">
+                    <img src="img/4.jpg">
+                    <div class="port-overlay">INTERIOR CLEANING</div>
+                </div>
+            </div>
+        </section>
 
-        <footer style="padding: 50px 20px; text-align: center; border-top: 1px solid #222;">
-            <div style="display: flex; justify-content: center; gap: 25px; margin-bottom: 20px;">
-                <a href="#" style="color: #fff; font-size: 24px;"><i class="fab fa-instagram"></i></a>
-                <a href="#" style="color: #fff; font-size: 24px;"><i class="fab fa-tiktok"></i></a>
-                <a href="#" style="color: #fff; font-size: 24px;"><i class="fab fa-telegram"></i></a>
-                <a href="#" style="color: #fff; font-size: 24px;"><i class="fab fa-facebook"></i></a>
-                <a href="https://wa.me/37120000000" style="color: #fff; font-size: 24px;"><i class="fab fa-whatsapp"></i></a>
-            </div>
-            <p style="color: #444; font-size: 11px; letter-spacing: 1px;">© INPUT CARS | ALL RIGHTS RESERVED</p>
-        </footer>
-    </main>
+        <section class="info-block">
+            <h2 class="sec-title" style="text-align: center; color: var(--accent-color); font-family: var(--accent-font); margin-bottom: 20px;">ATRAST MŪS</h2>
+            <div class="nav-panel">
+                <div class="maps-grid-solid">
+                    <a href="https://waze.com/ul?ll=57.3937,21.5647&navigate=yes" class="map-card waze">
+                        <div class="map-icon-circle"><i class="fab fa-waze"></i></div>
+                        <span>WAZE</span>
+                    </a>
+                    <a href="https://www.google.com/maps/search/Brīvības+iela+23,+Ventspils" class="map-card google">
+                        <div class="map-icon-circle"><i class="fas fa-location-dot"></i></div>
+                        <span>GOOGLE</span>
+                    </a>
+                    <a href="https://maps.apple.com/?address=Brīvības+iela+23,Ventspils" class="map-card apple">
+                        <div class="map-icon-circle"><i class="fab fa-apple"></i></div>
+                        <span>APPLE</span>
+                    </a>
+                </div>
+                <div class="address-footer">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Brīvības iela 23, Ventspils</span>
+                </div>
+            </div>
+        </section>
 
-    <div class="ai-chat-widget">
-        <button class="ai-btn" onclick="toggleAI()"><i class="fas fa-robot" style="color:#000;"></i></button>
-        <div class="ai-window" id="aiWindow">
-            <div class="ai-header">INPUT CARS AI ASSISTANT</div>
-            <div class="ai-body" id="aiBody">
-                <p style="background:#222; padding:10px; border-radius:10px;">Sveiki! Esmu AI asistents. Kā es varu palīdzēt?</p>
-            </div>
-            <div class="ai-input-box">
-                <input type="text" id="aiInput" placeholder="Rakstiet šeit...">
-                <button onclick="aiSend()" style="background:none; border:none; color:var(--accent-color); margin-left:10px;"><i class="fas fa-paper-plane"></i></button>
-            </div>
-        </div>
-    </div>
+      <footer style="padding: 50px 20px; text-align: center; border-top: 1px solid #222;">
+            <div style="display: flex; justify-content: center; gap: 25px; margin-bottom: 20px;">
+                <a href="#" style="color: #fff; font-size: 24px;"><i class="fab fa-instagram"></i></a>
+                <a href="#" style="color: #fff; font-size: 24px;"><i class="fab fa-tiktok"></i></a>
+                <a href="#" style="color: #fff; font-size: 24px;"><i class="fab fa-telegram"></i></a>
+                <a href="#" style="color: #fff; font-size: 24px;"><i class="fab fa-facebook"></i></a>
+                <a href="https://wa.me/37120000000" style="color: #fff; font-size: 24px;"><i class="fab fa-whatsapp"></i></a>
+            </div>
+            <p style="color: #444; font-size: 11px; letter-spacing: 1px;">© INPUT CARS | ALL RIGHTS RESERVED</p>
+        </footer>
+    </main>
 
-    <div id="modal-booking" class="full-screen-modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; z-index:9999; align-items:center; justify-content:center; background:rgba(0,0,0,0.95);">
-        <div class="modal-bg-overlay"></div>
-        <div class="modal-box glass-form" style="width: 90%; max-width: 450px; background: #0a0a0a; padding: 30px; border-radius: 20px; border: 1px solid #222; position: relative; overflow-y: auto; max-height: 90vh;">
-            <button onclick="closeBooking()" style="position:absolute; top:15px; left:15px; background:none; border:none; color:#fff; cursor:pointer; font-size: 14px;">← Atpakaļ</button>
-            
-            <form id="bookingForm" style="margin-top: 30px;">
-                <h2 style="font-family: var(--accent-font); font-size: 16px; margin-bottom: 20px; color: var(--accent-color); text-align: center;">PIETEIKTIES VIZĪTEI</h2>
-                
-                <input type="text" id="nameInput" placeholder="Vārds un Uzvārds" required style="width:100%; padding:14px; background:#000; border:1px solid #333; color:#fff; margin-bottom:12px; border-radius:12px; outline: none;">
-                
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 12px;">
-                    <input type="tel" id="phoneInput" value="+371" required style="padding:14px; background:#000; border:1px solid #333; color:#fff; border-radius:12px; outline: none;">
-                    <input type="email" id="emailInput" placeholder="E-pasts" required style="padding:14px; background:#000; border:1px solid #333; color:#fff; border-radius:12px; outline: none;">
-                </div>
+    <div class="ai-chat-widget">
+        <button class="ai-btn" onclick="toggleAI()"><i class="fas fa-robot" style="color:#000;"></i></button>
+        <div class="ai-window" id="aiWindow">
+            <div class="ai-header">INPUT CARS AI ASSISTANT</div>
+            <div class="ai-body" id="aiBody">
+                <p style="background:#222; padding:10px; border-radius:10px;">Sveiki! Esmu AI asistents. Kā es varu palīdzēt?</p>
+            </div>
+            <div class="ai-input-box">
+                <input type="text" id="aiInput" placeholder="Rakstiet šeit...">
+                <button onclick="aiSend()" style="background:none; border:none; color:var(--accent-color); margin-left:10px;"><i class="fas fa-paper-plane"></i></button>
+            </div>
+        </div>
+    </div>
 
-                <select id="serviceInput" required style="width:100%; padding:14px; background:#000; border:1px solid #333; color:#fff; margin-bottom:12px; border-radius:12px; cursor:pointer; outline: none;">
-                    <option value="" disabled selected>Izvēlieties pakalpojumu</option>
-                    <option value="Detailing">Detailing</option>
-                    <option value="Auto remonts">Auto remonts</option>
-                    <option value="Riepu serviss">Riepu serviss</option>
-                    <option value="Virsbūves pulēšana">Virsbūves pulēšana</option>
-                    <option value="Keramiskais pārklājums">Keramiskais pārklājums</option>
-                    <option value="Cits">Cits</option>
-                </select>
-                
-                <input type="text" id="carInput" placeholder="Auto marka un modelis" required style="width:100%; padding:14px; background:#000; border:1px solid #333; color:#fff; margin-bottom:12px; border-radius:12px; outline: none;">
+    <div id="modal-booking" class="full-screen-modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; z-index:9999; align-items:center; justify-content:center; background:rgba(0,0,0,0.9);">
+        <div class="modal-bg-overlay"></div>
+    <div class="modal-box glass-form">
+    <button onclick="closeBooking()" style="position:absolute; top:15px; left:15px; background:none; border:none; color:#fff; cursor:pointer;">← Atpakaļ</button>
+    
+   <form id="bookingForm" style="margin-top: 30px;">
+    <h2 style="font-family: var(--accent-font); font-size: 16px; margin-bottom: 20px; color: var(--accent-color);">PIETEIKTIES VIZĪTEI</h2>
+    
+    <input type="text" id="nameInput" placeholder="Vārds un Uzvārds" required style="width:100%; padding:14px; background:#000; border:1px solid #333; color:#fff; margin-bottom:12px; border-radius:12px;">
+    
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 12px;">
+        <input type="tel" id="phoneInput" value="+371" required style="padding:14px; background:#000; border:1px solid #333; color:#fff; border-radius:12px;">
+        <input type="email" id="emailInput" placeholder="E-pasts" required style="padding:14px; background:#000; border:1px solid #333; color:#fff; border-radius:12px;">
+    </div>
 
-                <textarea id="descInput" placeholder="Apraksts (neobligāti)" style="width:100%; padding:14px; background:#000; border:1px solid #333; color:#fff; margin-bottom:12px; border-radius:12px; height: 80px; resize: none; outline: none;"></textarea>
+    <select id="serviceInput" required style="width:100%; padding:14px; background:#000; border:1px solid #333; color:#fff; margin-bottom:12px; border-radius:12px; cursor:pointer; appearance: none; -webkit-appearance: none;">
+        <option value="" disabled selected>Izvēlieties pakalpojumu</option>
+        <option value="Detailing">Detailing</option>
+        <option value="Auto remonts">Auto remonts</option>
+        <option value="Riepu serviss">Riepu serviss</option>
+        <option value="Virsbūves pulēšana">Virsbūves pulēšana</option>
+        <option value="Keramiskais pārklājums">Keramiskais pārklājums</option>
+        <option value="Cits">Cits (norādīt aprakstā)</option>
+    </select>
+    
+    <input type="text" id="carInput" placeholder="Auto marka un modelis" required style="width:100%; padding:14px; background:#000; border:1px solid #333; color:#fff; margin-bottom:12px; border-radius:12px;">
 
-                <div id="imagePreviewContainer">
-                    <img id="imagePreview" src="" alt="Preview">
-                </div>
+    <textarea id="descInput" placeholder="Apraksts vai papildu vēlmes (pēc izvēles)" style="width:100%; padding:14px; background:#000; border:1px solid #333; color:#fff; margin-bottom:12px; border-radius:12px; height: 80px; resize: none; font-family: sans-serif;"></textarea>
 
-                <div style="margin-bottom: 15px;">
-                    <label for="fileInput" id="fileLabel" style="display:block; padding:12px; border:1px dashed #444; border-radius:12px; cursor:pointer; font-size:12px; color:#ccc; text-align:center;">
-                        <i class="fas fa-camera"></i> Pievienot auto foto
-                    </label>
-                    <input type="file" id="fileInput" accept="image/*" style="display:none;">
-                </div>
+    <div style="margin-bottom: 15px;">
+        <label for="fileInput" id="fileLabel" style="display:block; padding:12px; border:1px dashed #444; border-radius:12px; cursor:pointer; font-size:12px; color:#ccc; text-align:center;">
+            <i class="fas fa-camera"></i> Pievienot auto foto
+        </label>
+        <input type="file" id="fileInput" accept="image/*" style="display:none;">
+    </div>
 
-                <div class="g-recaptcha" data-sitekey="6LdTxD8sAAAAAD1yxCkgdOlLb0dRvvq3xspdW_8W" data-theme="dark" style="margin-bottom:15px; transform:scale(0.85); transform-origin:0 0;"></div>
-                
-                <div style="display: flex; align-items: center; gap: 12px; margin: 20px 0; padding: 10px; background: rgba(255,255,255,0.02); border-radius: 12px; border: 1px solid #222;">
-                    <input type="checkbox" required id="gdpr" style="width: 20px; height: 20px; cursor: pointer; accent-color: var(--accent-color);">
-                    <label for="gdpr" style="font-size: 10px; color: #888; line-height: 1.2; cursor: pointer;">
-                        Es piekrītu personas datu apstrādei saskaņā ar GDPR.
-                    </label>
-                </div>
+    <div class="g-recaptcha" data-sitekey="6LdTxD8sAAAAAD1yxCkgdOlLb0dRvvq3xspdW_8W" data-theme="dark" style="margin-bottom:15px; transform:scale(0.85); transform-origin:0 0;"></div>
+    
+    <div style="display: flex; align-items: center; gap: 12px; margin: 20px 0; padding: 10px; background: rgba(255,255,255,0.02); border-radius: 12px; border: 1px solid #222;">
+        <input type="checkbox" required id="gdpr" style="width: 22px; height: 22px; min-width: 22px; cursor: pointer; accent-color: #00d2ff; margin: 0; appearance: checkbox; -webkit-appearance: checkbox;">
+        <label for="gdpr" style="font-size: 11px; color: #aaa; line-height: 1.3; text-align: left; cursor: pointer;">
+            Es piekrītu personas datu apstrādei saskaņā ar GDPR un LR likumdošanu.
+        </label>
+    </div>
 
-                <button type="submit" id="submitBtn" style="width:100%; padding:16px; background:var(--accent-color); border:none; border-radius:12px; font-weight:bold; color:#000; cursor:pointer; text-transform: uppercase;">Nosūtīt pieteikumu</button>
-            </form>
+    <button type="submit" id="submitBtn" style="width:100%; padding:16px; background:var(--accent-color); border:none; border-radius:12px; font-weight:bold; color:#000; cursor:pointer; text-transform: uppercase;">Nosūtīt pieteikumu</button>
+</form>
 
-            <div id="successPart" class="success-toast">
-                <h3 style="color: var(--accent-color); margin-bottom: 10px;">NOSŪTĪTS!</h3>
-                <p style="font-size: 14px;">Mēs sazināsimies ar Jums drīz.</p>
-                <div style="width:100%; height:3px; background:#111; margin-top:20px;">
-                    <div id="progressBar" style="width:0%; height:100%; background:var(--accent-color);"></div>
-                </div>
-            </div>
-        </div>
-    </div>
+    <div id="successPart" class="success-toast">
+        <h3 style="color: var(--accent-color);">NOSŪTĪTS!</h3>
+        <p>Mēs sazināsimies ar Jums drīz.</p>
+        <div style="width:100%; height:3px; background:#111; margin-top:20px;">
+            <div id="progressBar" style="width:0%; height:100%; background:var(--accent-color); transition: 4s linear;"></div>
+        </div>
+    </div>
+</div>
+    <script src="https://www.google.com/recaptcha/api.js?hl=lv" async defer></script>
 
-    <script src="https://www.google.com/recaptcha/api.js?hl=lv" async defer></script>
-    <script>
-        // Простая логика открытия/закрытия
-        function openBooking() { document.getElementById('modal-booking').style.display = 'flex'; }
-        function closeBooking() { document.getElementById('modal-booking').style.display = 'none'; }
-        function toggleAI() { document.getElementById('aiWindow').classList.toggle('active'); }
-        
-        // Логика чата
-        function aiSend() {
-            const input = document.getElementById('aiInput');
-            const body = document.getElementById('aiBody');
-            if (input.value) {
-                body.innerHTML += `<p style="text-align:right; color:var(--accent-color); margin-bottom:10px;">${input.value}</p>`;
-                const userVal = input.value;
-                input.value = '';
-                setTimeout(() => {
-                    body.innerHTML += `<p style="background:#222; padding:10px; border-radius:10px; margin-bottom:10px;">Paldies! Mēs drīz atbildēsim uz Jūsu jautājumu par "${userVal}".</p>`;
-                    body.scrollTop = body.scrollHeight;
-                }, 800);
-            }
-        }
-    </script>
-    <script src="script.js"></script>
+    <script>
+        
+        function toggleAI() { document.getElementById('aiWindow').classList.toggle('active'); }
+        function aiSend() {
+            const input = document.getElementById('aiInput');
+            const body = document.getElementById('aiBody');
+            if (input.value) {
+                body.innerHTML += `<p style="text-align:right; color:var(--accent-color);">${input.value}</p>`;
+                input.value = '';
+                setTimeout(() => {
+                    body.innerHTML += `<p style="background:#222; padding:10px; border-radius:10px;">Paldies! Mēs drīz atbildēsim.</p>`;
+                    body.scrollTop = body.scrollHeight;
+                }, 800);
+            }
+        }
+        function openBooking() { document.getElementById('modal-booking').style.display = 'flex'; }
+        function closeBooking() { document.getElementById('modal-booking').style.display = 'none'; }
+    </script>
+    <script src="java/script.js"></script>
 </body>
+
 </html>
+
+проеверь если надо добавь не мення перписав код
