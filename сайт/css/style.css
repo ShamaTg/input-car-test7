@@ -1,6 +1,10 @@
 /* --- БАЗОВЫЕ СТИЛИ --- */
 * { margin: 0; padding: 0; box-sizing: border-box; }
-body { background: #000; color: #fff; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+body { 
+    background: #000; 
+    color: #fff; 
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
+}
 
 /* NAV */
 .top-nav { position: fixed; top: 0; width: 100%; background: rgba(0,0,0,0.85); backdrop-filter: blur(10px); z-index: 1000; border-bottom: 1px solid #222; padding: 10px 15px; }
@@ -9,7 +13,14 @@ body { background: #000; color: #fff; font-family: -apple-system, BlinkMacSystem
 .lang-selector button { background: #111; border: 1px solid #333; color: #fff; padding: 6px 10px; border-radius: 6px; cursor: pointer; margin-left: 4px; font-size: 16px; }
 
 /* HERO */
-.hero-section { padding: 100px 20px 40px; text-align: center; background: radial-gradient(circle at center, #111, #000); }
+.hero-section { 
+    padding: 100px 20px 40px; 
+    text-align: center; 
+    /* radial-gradient оставлен как основной фон */
+    background: radial-gradient(circle at center, #111, #000); 
+    background-size: cover;
+    background-position: center;
+}
 .hero-logo-img { width: 90px; margin-bottom: 15px; filter: drop-shadow(0 0 8px #00d2ff); }
 .main-title { font-size: 2rem; color: #00d2ff; margin-bottom: 5px; }
 .hero-desc { color: #888; font-size: 0.9rem; margin-bottom: 20px; }
@@ -97,14 +108,18 @@ body { background: #000; color: #fff; font-family: -apple-system, BlinkMacSystem
 }
 .map-card span { font-size: 10px; color: #888; font-weight: bold; letter-spacing: 1px; }
 
-/* Ховеры для карт */
 .map-card.waze:hover .map-icon-circle { background: #33CCFF; color: #000; box-shadow: 0 0 20px rgba(51, 204, 255, 0.4); border-color: #33CCFF; }
 .map-card.google:hover .map-icon-circle { background: #4285F4; color: #fff; box-shadow: 0 0 20px rgba(66, 133, 244, 0.4); border-color: #4285F4; }
 .map-card.apple:hover .map-icon-circle { background: #fff; color: #000; box-shadow: 0 0 20px rgba(255, 255, 255, 0.4); border-color: #fff; }
 .map-card:hover span { color: #fff; }
 
 /* --- FOOTER & WHATSAPP --- */
-.main-footer { padding: 40px 20px; text-align: center; background: #050505; }
+.main-footer { 
+    padding: 60px 20px; 
+    text-align: center; 
+    background: #000; 
+    border-top: 1px solid #111; 
+}
 .whatsapp-btn { background: #25D366; color: #fff; padding: 12px 25px; border-radius: 50px; text-decoration: none; font-weight: bold; display: inline-flex; align-items: center; gap: 8px; }
 .footer-addr { color: #666; font-size: 13px; margin-top: 15px; }
 
@@ -117,11 +132,26 @@ body { background: #000; color: #fff; font-family: -apple-system, BlinkMacSystem
 /* --- MODAL & FORM --- */
 .full-screen-modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 2000; display: flex; align-items: center; justify-content: center; }
 .modal-box { width: 90%; max-width: 400px; background: #0a0a0a; padding: 30px; border-radius: 20px; border: 1px solid #222; position: relative; }
-.pretty-select, .modal-box input { 
+.pretty-select, .modal-box input, .modal-box textarea { 
     width: 100%; padding: 15px; background: #000; border: 1px solid #333; color: #fff; margin-bottom: 10px; border-radius: 12px; outline: none; appearance: none;
 }
 .pretty-select { color: #00d2ff; cursor: pointer; }
 .btn-submit-form { width: 100%; padding: 15px; background: #00d2ff; border: none; border-radius: 12px; font-weight: bold; color: #000; cursor: pointer; }
+
+/* --- ПРЕВЬЮ ЗАГРУЖЕННОГО ФОТО (ДОБАВЛЕНО) --- */
+#imagePreviewContainer {
+    width: 100%;
+    margin-bottom: 15px;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px dashed #333;
+    display: none;
+}
+#imagePreview {
+    width: 100%;
+    height: auto;
+    display: block;
+}
 
 /* SUCCESS TOAST */
 .success-toast {
@@ -131,44 +161,33 @@ body { background: #000; color: #fff; font-family: -apple-system, BlinkMacSystem
 }
 .success-toast.active { opacity: 1; visibility: visible; transform: translate(-50%, -50%) scale(1); }
 #bookingForm.blur-effect { filter: blur(4px); opacity: 0.3; pointer-events: none; }
-/* ОБНОВЛЕННЫЙ ФУТЕР */
-.main-footer { 
-    padding: 60px 20px; 
-    text-align: center; 
-    background: #000; 
-    border-top: 1px solid #111; 
-}
 
+/* СОЦИАЛЬНЫЕ СЕТИ */
 .social-row-solid { 
     display: flex; 
     justify-content: center; 
     gap: 25px; 
     margin-bottom: 30px; 
 }
-
 .social-row-solid a { 
     font-size: 24px; 
     color: #444; 
     transition: all 0.3s ease; 
     text-decoration: none;
 }
-
-/* Эффекты при наведении для каждой иконки */
 .social-row-solid a:hover { transform: translateY(-3px); }
-.ico-ig:hover { color: #E1306C; } /* Instagram */
-.ico-tt:hover { color: #fff; }    /* TikTok */
-.ico-tg:hover { color: #0088cc; } /* Telegram */
-.ico-fb:hover { color: #1877F2; } /* Facebook */
-.ico-wa:hover { color: #25D366; } /* WhatsApp */
+.ico-ig:hover { color: #E1306C; } 
+.ico-tt:hover { color: #fff; }    
+.ico-tg:hover { color: #0088cc; } 
+.ico-fb:hover { color: #1877F2; } 
+.ico-wa:hover { color: #25D366; } 
 
-/* ГРИД УСЛУГ (чтобы всё было ровно) */
+/* ГРИДЫ */
 .services-mini-grid { 
     display: grid; 
     grid-template-columns: repeat(3, 1fr); 
     gap: 12px; 
 }
-
-/* КАРТОЧКИ ПОЧЕМУ МЫ */
 .why-grid-new { 
     display: grid; 
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
