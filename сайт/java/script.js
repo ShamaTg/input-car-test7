@@ -1,86 +1,44 @@
-<script>
-    // Ждем полной загрузки документа, чтобы кнопки стали активными
-    document.addEventListener('DOMContentLoaded', function() {
+export default async function handler(req, res) {
+    if (req.method !== 'POST') return res.status(405).send('Method Not Allowed');
+
+    const { name, phone, email, service, car, desc, 'g-recaptcha-response': captchaResponse } = req.body;
+
+    // Секретный ключ из твоей панели (скриншот image_f65502.png)
+    const secretKey = "6LdTxD8sAAAAAD3g2AUecJd47clFe993sNMb0pg8";
+    const verifyUrl = `https://www.google.com/recaptcha/api/siteverify?secret=${secretKey}&response=${captchaResponse}`;
+    
+    try {
+        const recaptchaRes = await fetch(verifyUrl, { method: 'POST' });
+        const recaptchaData = await recaptchaRes.json();
+
+        // Если Google отклоняет токен, это может быть из-за несовпадения ключей
+        if (!recaptchaData.success) {
+            return res.status(403).send("Kļūda: reCAPTCHA pārbaude neizdevās. Pārliecinieties, ka Site Key un Secret Key saskan.");
+        }
+
+        const token = "8474035997:AAFXjBfnPeVmqAzSseCary8jQvJLdEfeFFk";
+        const chat_id = "8414329140";
         
-        // Открытие и закрытие модалки
-        window.openBooking = function() { 
-            document.getElementById('modal-booking').style.display = 'flex'; 
-        };
-        window.closeBooking = function() { 
-            document.getElementById('modal-booking').style.display = 'none'; 
-        };
+        const message = `🚀 <b>JAUNS PIETEIKUMS</b>\n\n`
+                      + `👤 <b>Klients:</b> ${name || 'Nav'}\n`
+                      + `📞 <b>Tel:</b> ${phone || 'Nav'}\n`
+                      + `📧 <b>E-pasts:</b> ${email || 'Nav'}\n`
+                      + `🛠 <b>Pakalpojums:</b> ${service || 'Nav'}\n`
+                      + `🚗 <b>Auto:</b> ${car || 'Nav'}\n`
+                      + `📝 <b>Apraksts:</b> ${desc || 'Nav'}`;
 
-        // Обработка фото (исправлено)
-        const fileInput = document.getElementById('fileInput');
-        if (fileInput) {
-            fileInput.addEventListener('change', function(event) {
-                const reader = new FileReader();
-                reader.onload = function() {
-                    const preview = document.getElementById('imagePreview');
-                    const container = document.getElementById('imagePreviewContainer');
-                    preview.src = reader.result;
-                    container.style.display = 'block';
-                }
-                if(event.target.files[0]) reader.readAsDataURL(event.target.files[0]);
-            });
-        }
+        await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                chat_id: chat_id,
+                text: message,
+                parse_mode: 'HTML'
+            })
+        });
 
-        // ГЛАВНОЕ: Исправление работы кнопки "Nosūtīt"
-        const bookingForm = document.getElementById('bookingForm');
-        if (bookingForm) {
-            bookingForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-
-                // Проверка капчи
-                if (typeof grecaptcha !== 'undefined') {
-                    const response = grecaptcha.getResponse();
-                    if (response.length == 0) {
-                        alert("Lūdzu, apstipriniet, ka esat cilvēks (reCAPTCHA).");
-                        return;
-                    }
-                }
-
-                // Эффект успешной отправки
-                const success = document.getElementById('successPart');
-                const progress = document.getElementById('progressBar');
-
-                bookingForm.classList.add('blur-effect');
-                success.classList.add('active');
-
-                let width = 0;
-                const interval = setInterval(() => {
-                    if (width >= 100) {
-                        clearInterval(interval);
-                        setTimeout(() => {
-                            closeBooking();
-                            bookingForm.reset();
-                            bookingForm.classList.remove('blur-effect');
-                            success.classList.remove('active');
-                            document.getElementById('imagePreviewContainer').style.display = 'none';
-                            if (typeof grecaptcha !== 'undefined') grecaptcha.reset();
-                        }, 1000);
-                    } else {
-                        width += 2;
-                        progress.style.width = width + '%';
-                    }
-                }, 30);
-            });
-        }
-    });
-
-    // Функция AI чата (вне DOMContentLoaded для быстрого доступа)
-    function toggleAI() { 
-        const win = document.getElementById('aiWindow');
-        win.classList.toggle('active');
+        return res.status(200).send("Success");
+    } catch (err) {
+        return res.status(500).send("Servera kļūda");
     }
-
-    function aiSend() {
-        const input = document.getElementById('aiInput');
-        const body = document.getElementById('aiBody');
-        if (input && input.value.trim() !== "") {
-            body.innerHTML += `<p style="text-align:right; color:var(--accent-color); margin-bottom:10px;">${input.value}</p>`;
-            input.value = "";
-            body.scrollTop = body.scrollHeight;
-        }
-    }
-</script>
+}
