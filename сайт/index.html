@@ -253,7 +253,7 @@
                 <div class="why-card">
                     <i class="fas fa-microchip"></i>
                     <h3>MODERNAS TEHNOLOĢIJAS</h3>
-                    <p>Izmantojam jaunāko aprīkojumu un inovatīvus kopšanas līdzekļus.</p>
+                    <p>Izmantojam jaunāko aprīkojumu un inovatīvus kopšanas līцеди.</p>
                 </div>
             </div>
         </section>
@@ -276,7 +276,7 @@
                         <div class="map-icon-circle"><i class="fab fa-waze"></i></div>
                         <span>WAZE</span>
                     </a>
-                    <a href="https://www.google.com/maps?q=57.3937,21.5647" class="map-card google">
+                    <a href="https://www.google.com/maps/search/?api=1&query=Brīvības+iela+23,Ventspils" class="map-card google">
                         <div class="map-icon-circle"><i class="fas fa-location-dot"></i></div>
                         <span>GOOGLE</span>
                     </a>
@@ -322,7 +322,7 @@
         <div class="modal-box glass-form" style="width: 90%; max-width: 450px; background: #0a0a0a; padding: 30px; border-radius: 20px; border: 1px solid #222; position: relative; overflow-y: auto; max-height: 90vh;">
             <button onclick="closeBooking()" style="position:absolute; top:15px; left:15px; background:none; border:none; color:#fff; cursor:pointer; font-size: 14px;">← Atpakaļ</button>
             
-            <form id="bookingForm" style="margin-top: 30px; position: relative; z-index: 10;">
+            <form id="bookingForm" style="margin-top: 30px;">
                 <h2 style="font-family: var(--accent-font); font-size: 16px; margin-bottom: 20px; color: var(--accent-color); text-align: center;">PIETEIKTIES VIZĪTEI</h2>
                 
                 <input type="text" id="nameInput" placeholder="Vārds un Uzvārds" required style="width:100%; padding:14px; background:#000; border:1px solid #333; color:#fff; margin-bottom:12px; border-radius:12px; outline: none;">
@@ -336,35 +336,37 @@
                     <option value="" disabled selected>Izvēlieties pakalpojumu</option>
                     <option value="Detailing">Detailing</option>
                     <option value="Auto remonts">Auto remonts</option>
+                    <option value="Riepu serviss">Riepu serviss</option>
+                    <option value="Virsbūves pulēšana">Virsbūves pulēšana</option>
+                    <option value="Keramiskais pārklājums">Keramiskais pārklājums</option>
+                    <option value="Cits">Cits</option>
                 </select>
                 
                 <input type="text" id="carInput" placeholder="Auto marka un modelis" required style="width:100%; padding:14px; background:#000; border:1px solid #333; color:#fff; margin-bottom:12px; border-radius:12px; outline: none;">
 
-                <div style="margin-bottom: 15px;">
-                    <label for="fileInput" id="fileLabel" style="display:block; padding:12px; border:1px dashed #444; border-radius:12px; cursor:pointer; font-size:12px; color:#ccc; text-align:center; background: rgba(255,255,255,0.05);">
-                        <i class="fas fa-camera"></i> Pievienot auto foto
-                    </label>
-                    <input type="file" id="fileInput" accept="image/*" style="display:none;" onchange="handleImage(event)">
-                </div>
+                <textarea id="descInput" placeholder="Apraksts (neobligāti)" style="width:100%; padding:14px; background:#000; border:1px solid #333; color:#fff; margin-bottom:12px; border-radius:12px; height: 80px; resize: none; outline: none;"></textarea>
 
                 <div id="imagePreviewContainer">
-                    <img id="imagePreview" src="">
+                    <img id="imagePreview" src="" alt="Preview">
                 </div>
 
                 <div style="margin-bottom: 15px;">
-                    <div class="g-recaptcha" data-sitekey="6LdTxD8sAAAAAD1yxCkgdOlLb0dRvvq3xspdW_8W" data-theme="dark" style="transform:scale(0.85); transform-origin:0 0;"></div>
+                    <label for="fileInput" id="fileLabel" style="display:block; padding:12px; border:1px dashed #444; border-radius:12px; cursor:pointer; font-size:12px; color:#ccc; text-align:center;">
+                        <i class="fas fa-camera"></i> Pievienot auto foto
+                    </label>
+                    <input type="file" id="fileInput" accept="image/*" style="display:none;">
                 </div>
+
+                <div class="g-recaptcha" data-sitekey="6LdTxD8sAAAAAD1yxCkgdOlLb0dRvvq3xspdW_8W" data-theme="dark" style="margin-bottom:15px; transform:scale(0.85); transform-origin:0 0;"></div>
                 
-                <div style="display: flex; align-items: center; gap: 12px; margin: 20px 0; padding: 12px; background: rgba(255,255,255,0.05); border-radius: 12px; border: 1px solid #333; position: relative; z-index: 40;">
-                    <input type="checkbox" required id="gdpr" style="width: 24px; height: 24px; cursor: pointer; accent-color: var(--accent-color); flex-shrink: 0; position: relative; z-index: 41;">
-                    <label for="gdpr" style="font-size: 11px; color: #888; cursor: pointer; user-select: none; position: relative; z-index: 41; flex: 1;">
+                <div style="display: flex; align-items: center; gap: 12px; margin: 20px 0; padding: 10px; background: rgba(255,255,255,0.02); border-radius: 12px; border: 1px solid #222;">
+                    <input type="checkbox" required id="gdpr" style="width: 20px; height: 20px; cursor: pointer; accent-color: var(--accent-color);">
+                    <label for="gdpr" style="font-size: 10px; color: #888; line-height: 1.2; cursor: pointer;">
                         Es piekrītu personas datu apstrādei saskaņā ar GDPR.
                     </label>
                 </div>
 
-                <button type="submit" id="submitBtn" style="width:100%; padding:18px; background:var(--accent-color); border:none; border-radius:12px; font-weight:bold; color:#000; cursor:pointer; text-transform: uppercase; position: relative; z-index: 100;">
-                    Nosūtīt pieteikumu
-                </button>
+                <button type="submit" id="submitBtn" style="width:100%; padding:16px; background:var(--accent-color); border:none; border-radius:12px; font-weight:bold; color:#000; cursor:pointer; text-transform: uppercase;">Nosūtīt pieteikumu</button>
             </form>
 
             <div id="successPart" class="success-toast">
@@ -379,82 +381,26 @@
 
     <script src="https://www.google.com/recaptcha/api.js?hl=lv" async defer></script>
     <script>
-        // 1. Навигация и AI
+        // Простая логика открытия/закрытия
         function openBooking() { document.getElementById('modal-booking').style.display = 'flex'; }
         function closeBooking() { document.getElementById('modal-booking').style.display = 'none'; }
         function toggleAI() { document.getElementById('aiWindow').classList.toggle('active'); }
-
-        // 2. Фото
-        function handleImage(event) {
-            const file = event.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function() {
-                    const preview = document.getElementById('imagePreview');
-                    const container = document.getElementById('imagePreviewContainer');
-                    preview.src = reader.result;
-                    container.style.display = 'block';
-                }
-                reader.readAsDataURL(file);
-            }
-        }
-
-        // 3. AI чат
+        
+        // Логика чата
         function aiSend() {
             const input = document.getElementById('aiInput');
             const body = document.getElementById('aiBody');
-            if (input.value.trim()) {
+            if (input.value) {
+                body.innerHTML += `<p style="text-align:right; color:var(--accent-color); margin-bottom:10px;">${input.value}</p>`;
                 const userVal = input.value;
-                body.innerHTML += `<p style="text-align:right; color:var(--accent-color); margin-bottom:10px;">${userVal}</p>`;
                 input.value = '';
                 setTimeout(() => {
-                    body.innerHTML += `<p style="background:#222; padding:10px; border-radius:10px; margin-bottom:10px;">Paldies! Mēs drīz atbildēsim uz Jūsu jautājumu.</p>`;
+                    body.innerHTML += `<p style="background:#222; padding:10px; border-radius:10px; margin-bottom:10px;">Paldies! Mēs drīz atbildēsim uz Jūsu jautājumu par "${userVal}".</p>`;
                     body.scrollTop = body.scrollHeight;
                 }, 800);
             }
         }
-
-        // 4. ЛОГИКА ОТПРАВКИ (Филигранное исправление)
-        document.addEventListener('DOMContentLoaded', function() {
-            const form = document.getElementById('bookingForm');
-            if (form) {
-                form.addEventListener('submit', function(e) {
-                    e.preventDefault();
-
-                    // Проверка капчи
-                    const response = grecaptcha.getResponse();
-                    if (response.length === 0) {
-                        alert("Lūdzu, apstipriniet, ka neesat robots (reCAPTCHA).");
-                        return;
-                    }
-
-                    // Анимация успеха
-                    const success = document.getElementById('successPart');
-                    const progress = document.getElementById('progressBar');
-                    
-                    form.classList.add('blur-effect');
-                    success.classList.add('active');
-
-                    let width = 0;
-                    const interval = setInterval(() => {
-                        if (width >= 100) {
-                            clearInterval(interval);
-                            setTimeout(() => {
-                                closeBooking();
-                                form.reset();
-                                form.classList.remove('blur-effect');
-                                success.classList.remove('active');
-                                document.getElementById('imagePreviewContainer').style.display = 'none';
-                                grecaptcha.reset();
-                            }, 1000);
-                        } else {
-                            width += 2;
-                            progress.style.width = width + '%';
-                        }
-                    }, 30);
-                });
-            }
-        });
     </script>
+    <script src="script.js"></script>
 </body>
 </html>
