@@ -4,23 +4,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const fileLabel = document.getElementById('fileLabel');
     const previewContainer = document.getElementById('imagePreviewContainer');
     const previewImage = document.getElementById('imagePreview');
-    const gdprCheckbox = document.getElementById('gdpr');
 
-    // --- 1. ПРЕДПРОСМОТР ФОТО ---
+    // --- 1. ЛОГИКА ПРЕДПРОСМОТРА ФОТО ---
     fileInput.onchange = function(event) {
         const file = event.target.files[0];
         if (file) {
-            // Ограничение 5MB для стабильной передачи
-            if (file.size > 5 * 1024 * 1024) {
-                alert("Fails ir pārāk liels (maks. 5MB)");
-                this.value = "";
-                return;
-            }
-
+            // Меняем текст на кнопке
             fileLabel.innerHTML = `<i class="fas fa-check"></i> Foto pievienots`;
-            fileLabel.style.borderColor = "var(--accent-color)";
-            fileLabel.style.color = "var(--accent-color)";
+            fileLabel.style.borderColor = "#00d2ff";
+            fileLabel.style.color = "#00d2ff";
 
+            // Показываем превью
             const reader = new FileReader();
             reader.onload = function(e) {
                 previewImage.src = e.target.result;
@@ -34,23 +28,11 @@ document.addEventListener('DOMContentLoaded', () => {
     form.onsubmit = async (e) => {
         e.preventDefault();
 
-        // Проверка Google reCAPTCHA
-        const recaptchaResponse = grecaptcha.getResponse();
-        if (!recaptchaResponse) {
-            alert("Lūdzu, apstipriniet, ka neesat robots!");
-            return;
-        }
-
-        // Проверка GDPR
-        if (!gdprCheckbox.checked) {
-            alert("Jums ir jāpiekrīt datu apstrādei (GDPR).");
-            return;
-        }
-
         const submitBtn = document.getElementById('submitBtn');
         submitBtn.disabled = true;
         submitBtn.innerText = "SŪTA...";
 
+        // Собираем данные
         const formData = {
             name: document.getElementById('nameInput').value,
             phone: document.getElementById('phoneInput').value,
@@ -58,9 +40,16 @@ document.addEventListener('DOMContentLoaded', () => {
             service: document.getElementById('serviceInput').value,
             car: document.getElementById('carInput').value,
             desc: document.getElementById('descInput').value,
-            photo: previewContainer.style.display === 'block' ? previewImage.src : null,
-            'g-recaptcha-response': recaptchaResponse
+            photo: previewImage.src || null, // Отправляем base64 строку
+            'g-recaptcha-response': grecaptcha.getResponse()
         };
+
+        if (!formData['g-recaptcha-response']) {
+            alert("Lūdzu, apstipriniet, ka neesat robots!");
+            submitBtn.disabled = false;
+            submitBtn.innerText = "Nosūtīt pieteikumu";
+            return;
+        }
 
         try {
             const response = await fetch('/api/send', {
@@ -70,44 +59,48 @@ document.addEventListener('DOMContentLoaded', () => {
             });
 
             if (response.ok) {
-                // Успешная анимация
+                // Эффекты при успехе
                 form.classList.add('blur-effect');
                 const successPart = document.getElementById('successPart');
                 successPart.classList.add('active');
                 
+                // Анимация полоски прогресса
                 const progress = document.getElementById('progressBar');
-                progress.style.transition = "width 4s linear";
                 progress.style.width = '100%';
 
+                // Очистка и закрытие через 4 секунды
                 setTimeout(() => {
                     form.reset();
                     form.classList.remove('blur-effect');
                     successPart.classList.remove('active');
                     previewContainer.style.display = 'none';
                     previewImage.src = '';
-                    progress.style.width = '0%';
                     fileLabel.innerHTML = `<i class="fas fa-camera"></i> Pievienot auto foto`;
                     fileLabel.style.borderColor = "#444";
                     grecaptcha.reset();
-                    closeBooking();
+                    closeBooking(); // Закрываем модалку
                     submitBtn.disabled = false;
                     submitBtn.innerText = "Nosūtīt pieteikumu";
                 }, 4500);
 
             } else {
-                throw new Error("Server error");
+                alert("Kļūda nosūtot. Mēģiniet vēlreiz.");
+                submitBtn.disabled = false;
+                submitBtn.innerText = "Nosūtīt pieteikumu";
             }
         } catch (error) {
             console.error(error);
-            alert("Kļūda nosūtot. Mēģiniet vēlreiz vai sazinieties ar mums WhatsApp.");
+            alert("Servera kļūda.");
             submitBtn.disabled = false;
-            submitBtn.innerText = "Nosūtīt pieteikumu";
         }
     };
 });
 
-// Переключение языков (заглушка)
+// Глобальные функции для кнопок (если не в основном блоке)
 function changeLang(lang) {
-    const msg = lang === 'ru' ? "RU valoda drīz būs pieejama" : "LV valoda jau ir aktīva";
-    alert(msg);
+    if(lang === 'ru') {
+        alert("RU valoda drīz būs pieejama");
+    } else {
+        alert("LV valoda jau ir aktīva");
+    }
 }
