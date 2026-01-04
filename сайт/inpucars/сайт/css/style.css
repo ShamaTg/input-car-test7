@@ -1,0 +1,70 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: #000; color: #fff; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+
+/* NAV */
+.top-nav { position: fixed; top: 0; width: 100%; background: rgba(0,0,0,0.85); backdrop-filter: blur(10px); z-index: 1000; border-bottom: 1px solid #222; padding: 10px 15px; }
+.nav-content { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; }
+.brand-logo { color: #00d2ff; font-weight: bold; font-size: 1rem; }
+.lang-selector button { background: #111; border: 1px solid #333; color: #fff; padding: 6px 10px; border-radius: 6px; cursor: pointer; margin-left: 4px; font-size: 16px; }
+
+/* HERO */
+.hero-section { padding: 100px 20px 40px; text-align: center; background: radial-gradient(circle at center, #111, #000); }
+.hero-logo-img { width: 90px; margin-bottom: 15px; filter: drop-shadow(0 0 8px #00d2ff); }
+.main-title { font-size: 2rem; color: #00d2ff; margin-bottom: 5px; }
+.hero-desc { color: #888; font-size: 0.9rem; margin-bottom: 20px; }
+.btn-book-main { background: #00d2ff; color: #000; padding: 14px 40px; border: none; font-weight: bold; border-radius: 30px; cursor: pointer; }
+
+/* BLOCKS */
+.info-block { padding: 25px 15px; text-align: center; max-width: 800px; margin: 0 auto; }
+.sec-title { color: #00d2ff; font-size: 1.2rem; text-transform: uppercase; margin-bottom: 20px; }
+.glass-box { background: #0a0a0a; border: 1px solid #222; padding: 20px; border-radius: 15px; }
+.txt-red { color: #ff0055; font-weight: bold; }
+
+/* GRIDS */
+.services-mini-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.s-mini-card { background: #111; padding: 15px 5px; border-radius: 12px; border: 1px solid #222; }
+.s-mini-card i { color: #00d2ff; font-size: 1.5rem; margin-bottom: 8px; display: block; }
+.s-mini-card p { font-size: 0.75rem; font-weight: bold; }
+
+.portfolio-compact { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.port-img-box img { width: 100%; height: 150px; object-fit: cover; border-radius: 10px; border: 1px solid #222; }
+
+/* FOOTER */
+.main-footer { padding: 40px 20px; text-align: center; background: #050505; }
+.social-row { display: flex; justify-content: center; gap: 20px; font-size: 30px; margin-bottom: 25px; }
+.social-row a { color: #fff; transition: 0.3s; }
+.ico-fb:hover { color: #1877F2; }
+.ico-ig:hover { color: #E1306C; }
+
+.wa-container { margin-bottom: 30px; }
+.whatsapp-btn { background: #25D366; color: #fff; padding: 12px 25px; border-radius: 50px; text-decoration: none; font-weight: bold; display: inline-flex; align-items: center; gap: 8px; }
+
+.maps-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; max-width: 400px; margin: 0 auto 20px; }
+.map-btn { text-decoration: none; color: #fff; background: #111; border: 1px solid #333; padding: 10px 5px; border-radius: 10px; font-size: 12px; display: flex; flex-direction: column; align-items: center; gap: 5px; }
+.waze-bg:hover { color: #33CCFF; border-color: #33CCFF; }
+.google-bg:hover { color: #4285F4; border-color: #4285F4; }
+.apple-bg:hover { background: #fff; color: #000; }
+
+.footer-addr { color: #666; font-size: 13px; margin-top: 10px; }
+
+/* AI */
+.ai-widget { position: fixed; bottom: 20px; right: 20px; z-index: 1500; }
+.ai-toggle-btn { background: #00d2ff; color: #000; border: none; padding: 12px 20px; border-radius: 50px; font-weight: bold; cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.4); }
+.ai-window { width: 280px; height: 380px; background: #0a0a0a; border: 1px solid #333; position: absolute; bottom: 65px; right: 0; border-radius: 15px; display: flex; flex-direction: column; overflow: hidden; }
+.ai-header { background: #222; padding: 12px; font-weight: bold; font-size: 14px; text-align: center; }
+.ai-chat-body { flex: 1; padding: 15px; font-size: 13px; overflow-y: auto; text-align: left; }
+.ai-input-row { display: flex; background: #111; padding: 5px; }
+.ai-input-row input { flex: 1; background: none; border: none; color: #fff; padding: 10px; outline: none; }
+.ai-input-row button { background: none; border: none; color: #00d2ff; padding: 10px; cursor: pointer; }
+
+/* MODAL */
+.full-screen-modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; z-index: 2000; padding: 60px 20px; }
+.modal-box { max-width: 400px; margin: 0 auto; }
+.modal-box input { width: 100%; padding: 15px; background: #111; border: 1px solid #333; color: #fff; margin-bottom: 10px; border-radius: 10px; }
+.btn-submit-form { width: 100%; padding: 15px; background: #00d2ff; border: none; border-radius: 10px; font-weight: bold; }
+.btn-close-modal { background: none; border: none; color: #00d2ff; margin-bottom: 20px; cursor: pointer; font-size: 16px; }
+
+@media (max-width: 500px) {
+    .services-mini-grid { grid-template-columns: 1fr; }
+    .hero-section { padding-top: 80px; }
+}

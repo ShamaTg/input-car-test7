@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="lv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Input Cars | Detailing & Repair</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="nav-inner">
+            <span class="brand">INPUT CARS</span>
+            <div class="langs">
+                <button onclick="changeLang('lv')">🇱🇻</button>
+                <button onclick="changeLang('ru')">🇷🇺</button>
+                <button onclick="changeLang('en')">🇬🇧</button>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <img src="logo.png" alt="Logo" class="logo">
+        <h1 data-key="title">INPUT CARS</h1>
+        <p class="subtitle" data-key="hero_sub">Professional Detailing & Repair Workshop 🛠️</p>
+        <button class="main-btn" onclick="openBooking()" data-key="btn_book">PIETEIKTIES 📅</button>
+    </header>
+
+    <section class="content">
+        <div class="card schedule">
+            <h3 data-key="work_title">🕒 Darba laiks</h3>
+            <p>P-Pk: 09:00 - 18:00 | S: 10:00 - 15:00</p>
+            <p><span data-key="work_sun">Svētdiena</span>: <span class="red">Slēgts</span></p>
+        </div>
+
+        <h2 class="section-title" data-key="services_title">Pakalpojumi 💎</h2>
+        <div class="services-grid">
+            <div class="s-card"><i class="fas fa-shining"></i><p data-key="s1_t">Detailing</p></div>
+            <div class="s-card"><i class="fas fa-wrench"></i><p data-key="s2_t">Remonts</p></div>
+            <div class="s-card"><i class="fas fa-tire"></i><p data-key="s3_t">Riepas</p></div>
+        </div>
+
+        <h2 class="section-title" data-key="port_title">Mūsu darbi 📸</h2>
+        <div class="portfolio-grid">
+            <div class="p-item"><img src="work1.jpg" alt="1"></div>
+            <div class="p-item"><img src="work2.jpg" alt="2"></div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="socials">
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-tiktok"></i></a>
+            <a href="https://wa.me/3712XXXXXXX"><i class="fab fa-whatsapp"></i></a>
+        </div>
+
+        <div class="maps">
+            <a href="https://waze.com/ul?q=Brīvības+iela+23+Ventspils&navigate=yes" class="map-link"><i class="fab fa-waze"></i> Waze</a>
+            <a href="https://www.google.com/maps/dir/?api=1&destination=Brīvības+iela+23+Ventspils" class="map-link"><i class="fab fa-google"></i> Google</a>
+            <a href="http://maps.apple.com/?daddr=Brīvības+iela+23+Ventspils" class="map-link"><i class="fab fa-apple"></i> Apple</a>
+        </div>
+        <p class="address">📍 Brīvības 23, Ventspils</p>
+    </footer>
+
+    <div class="ai-box">
+        <div id="ai-chat" class="ai-window" style="display:none">
+            <div class="ai-h">Support AI 🤖</div>
+            <div id="ai-messages" class="ai-b"></div>
+            <div class="ai-f">
+                <input type="text" id="ai-in" placeholder="...">
+                <button onclick="aiSend()"><i class="fas fa-paper-plane"></i></button>
+            </div>
+        </div>
+        <button class="ai-btn" onclick="toggleAI()"><i class="fas fa-robot"></i> AI Help</button>
+    </div>
+
+    <div id="modal" class="modal" style="display:none">
+        <div class="modal-content">
+            <button onclick="closeBooking()" class="close">← Atpakaļ</button>
+            <form id="bookingForm">
+                <input type="text" id="nameInput" placeholder="Vārds" required>
+                <input type="tel" id="phoneInput" value="+371" required>
+                <input type="text" id="carInput" placeholder="Auto modelis">
+                <button type="submit" class="submit-btn" data-key="btn_send">SŪTĪТ</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="java/script.js"></script>
+</body>
+</html>
