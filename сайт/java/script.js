@@ -172,41 +172,4 @@
         function closeModal() { document.getElementById('bookingModal').style.display = 'none'; }
         function toggleAI() { 
             const win = document.getElementById('aiWindow');
-            win.style.display = win.style.display === 'flex' ? 'none' : 'flex';
-        }
-
-        // Предпросмотр фото
-        function handleImage(event) {
-            const reader = new FileReader();
-            reader.onload = function() {
-                const preview = document.getElementById('imagePreview');
-                preview.src = reader.result;
-                document.getElementById('imagePreviewContainer').style.display = 'block';
-            }
-            reader.readAsDataURL(event.target.files[0]);
-        }
-
-        // Отправка формы (заглушка)
-        document.getElementById('mainForm').onsubmit = function(e) {
-            e.preventDefault();
-            alert('Paldies! Pieteikums saņemts.');
-            closeModal();
-        };
-
-        // Чат
-        function aiSend() {
-            const input = document.getElementById('aiInput');
-            const body = document.getElementById('aiBody');
-            if(input.value.trim()){
-                body.innerHTML += `<span style="background:var(--accent-color); color:#000; padding:10px; border-radius:10px; align-self:flex-end;">${input.value}</span>`;
-                const msg = input.value;
-                input.value = '';
-                setTimeout(() => {
-                    body.innerHTML += `<span style="background:#333; padding:10px; border-radius:10px; align-self:flex-start;">Mēs saņēmām jūsu jautājumu par: "${msg}". Mūsu darbinieks drīz atbildēs!</span>`;
-                    body.scrollTop = body.scrollHeight;
-                }, 1000);
-            }
-        }
-    </script>
-</body>
-</html>
+            win.style.display = win.style.display === 'flex
