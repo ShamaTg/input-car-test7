@@ -1,25 +1,21 @@
 export default async function handler(req, res) {
-    // Разрешаем только POST запросы
-    if (req.method !== 'POST') {
-        return res.status(405).send('Method Not Allowed');
-    }
+    if (req.method !== 'POST') return res.status(405).send('Method Not Allowed');
 
-    // Получаем данные из тела запроса
     const { name, phone, email, service, car, desc, 'g-recaptcha-response': captchaResponse } = req.body;
 
-    // 1. ПРОВЕРКА RECAPTCHA (Secret Key)
-    const secretKey = "6LeRwj8sAAAAAHZcpj4C57s6Ow8G7kr0dGP_246Z";
+    // Секретный ключ из твоей панели (скриншот image_f65502.png)
+    const secretKey = "6LdTxD8sAAAAAD3g2AUecJd47clFe993sNMb0pg8";
     const verifyUrl = `https://www.google.com/recaptcha/api/siteverify?secret=${secretKey}&response=${captchaResponse}`;
     
     try {
         const recaptchaRes = await fetch(verifyUrl, { method: 'POST' });
         const recaptchaData = await recaptchaRes.json();
 
+        // Если Google отклоняет токен, это может быть из-за несовпадения ключей
         if (!recaptchaData.success) {
-            return res.status(403).send("Kļūda: reCAPTCHA pārbaude neizdevās.");
+            return res.status(403).send("Kļūda: reCAPTCHA pārbaude neizdevās. Pārliecinieties, ka Site Key un Secret Key saskan.");
         }
 
-        // 2. НАСТРОЙКИ TELEGRAM
         const token = "8474035997:AAFXjBfnPeVmqAzSseCary8jQvJLdEfeFFk";
         const chat_id = "8414329140";
         
@@ -31,8 +27,7 @@ export default async function handler(req, res) {
                       + `🚗 <b>Auto:</b> ${car || 'Nav'}\n`
                       + `📝 <b>Apraksts:</b> ${desc || 'Nav'}`;
 
-        // Отправка сообщения в Telegram
-        const telegramRes = await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+        await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
@@ -42,14 +37,8 @@ export default async function handler(req, res) {
             })
         });
 
-        if (telegramRes.ok) {
-            return res.status(200).send("Success");
-        } else {
-            return res.status(500).send("Telegram API kļūda");
-        }
+        return res.status(200).send("Success");
     } catch (err) {
         return res.status(500).send("Servera kļūda");
     }
 }
-
-
