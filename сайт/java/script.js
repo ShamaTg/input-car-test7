@@ -1,102 +1,106 @@
-const translations = {
-    lv: { hero_sub: "Profesionāls auto detailing un remonts 🛠️", btn_book: "PIETEIKTIES 📅", form_title: "PIETEIKTIES VIZĪTEI", btn_back: "← Atpakaļ", btn_send: "NOSŪTĪT", success_thanks: "NOSŪTĪTS!", success_msg: "Mēs sazināsimies ar Jums drīz." },
-    ru: { hero_sub: "Профессиональный детейлинг и ремонт 🛠️", btn_book: "ЗАПИСАТЬСЯ 📅", form_title: "ЗАПИСАТЬСЯ НА ВИЗИТ", btn_back: "← Назад", btn_send: "ОТПРАВИТЬ", success_thanks: "ОТПРАВЛЕНО!", success_msg: "Мы свяжемся с Вами в ближайшее время." }
-};
-
-function changeLang(lang) {
-    document.querySelectorAll('[data-key]').forEach(el => {
-        const key = el.getAttribute('data-key');
-        if (translations[lang] && translations[lang][key]) el.innerText = translations[lang][key];
-    });
-}
-
-function openBooking() { document.getElementById('modal-booking').style.display = 'flex'; }
-
-function closeBooking() { 
-    document.getElementById('modal-booking').style.display = 'none';
+document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('bookingForm');
-    form.style.filter = "none";
-    document.getElementById('successPart').classList.remove('active');
-    document.getElementById('progressBar').style.width = "0%";
-}
+    const fileInput = document.getElementById('fileInput');
+    const fileLabel = document.getElementById('fileLabel');
+    const previewContainer = document.getElementById('imagePreviewContainer');
+    const previewImage = document.getElementById('imagePreview');
 
-document.getElementById('fileInput').onchange = function() {
-    if(this.files[0]) document.getElementById('fileLabel').innerText = "✓ Foto pievienots";
-};
+    // --- 1. ЛОГИКА ПРЕДПРОСМОТРА ФОТО ---
+    fileInput.onchange = function(event) {
+        const file = event.target.files[0];
+        if (file) {
+            // Меняем текст на кнопке
+            fileLabel.innerHTML = `<i class="fas fa-check"></i> Foto pievienots`;
+            fileLabel.style.borderColor = "#00d2ff";
+            fileLabel.style.color = "#00d2ff";
 
-document.getElementById('bookingForm').onsubmit = async function(e) {
-    e.preventDefault();
-
-    const captchaResponse = grecaptcha.getResponse();
-    if (!captchaResponse) {
-        alert("Lūdzu, apstipriniet, ka neesat robots!");
-        return;
-    }
-
-    const btn = document.getElementById('submitBtn');
-    const form = document.getElementById('bookingForm');
-    const successToast = document.getElementById('successPart');
-    const progress = document.getElementById('progressBar');
-
-    btn.disabled = true;
-    const originalBtnText = btn.innerText;
-    btn.innerText = "SŪTA...";
-
-    // Собираем данные в JSON
-    const formData = {
-        name: document.getElementById('nameInput').value,
-        phone: document.getElementById('phoneInput').value,
-        email: document.getElementById('emailInput').value,
-        service: document.getElementById('serviceInput').value,
-        car: document.getElementById('carInput').value,
-        desc: document.getElementById('descInput').value,
-        'g-recaptcha-response': captchaResponse
+            // Показываем превью
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                previewImage.src = e.target.result;
+                previewContainer.style.display = 'block';
+            }
+            reader.readAsDataURL(file);
+        }
     };
 
-    try {
-        const response = await fetch('/api/send', { 
-            method: 'POST', 
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(formData) 
-        });
-        
-        const result = await response.text();
+    // --- 2. ОТПРАВКА ФОРМЫ ---
+    form.onsubmit = async (e) => {
+        e.preventDefault();
 
-        if (result === "Success") {
-            form.style.filter = "blur(10px)";
-            successToast.classList.add('active');
-            setTimeout(() => { progress.style.width = "100%"; }, 100);
+        const submitBtn = document.getElementById('submitBtn');
+        submitBtn.disabled = true;
+        submitBtn.innerText = "SŪTA...";
 
-            setTimeout(() => {
-                closeBooking();
-                form.reset();
-                grecaptcha.reset();
-                btn.disabled = false;
-                btn.innerText = originalBtnText;
-                document.getElementById('fileLabel').innerText = "Pievienot auto foto";
-            }, 4000);
-        } else {
-            alert("Kļūda: " + result);
-            btn.disabled = false;
-            btn.innerText = originalBtnText;
+        // Собираем данные
+        const formData = {
+            name: document.getElementById('nameInput').value,
+            phone: document.getElementById('phoneInput').value,
+            email: document.getElementById('emailInput').value,
+            service: document.getElementById('serviceInput').value,
+            car: document.getElementById('carInput').value,
+            desc: document.getElementById('descInput').value,
+            photo: previewImage.src || null, // Отправляем base64 строку
+            'g-recaptcha-response': grecaptcha.getResponse()
+        };
+
+        if (!formData['g-recaptcha-response']) {
+            alert("Lūdzu, apstipriniet, ka neesat robots!");
+            submitBtn.disabled = false;
+            submitBtn.innerText = "Nosūtīt pieteikumu";
+            return;
         }
-    } catch (error) {
-        alert("Servera kļūda!");
-        btn.disabled = false;
-        btn.innerText = originalBtnText;
-    }
-};
 
-function toggleAI() { document.getElementById('aiWindow').classList.toggle('active'); }
-function aiSend() {
-    const input = document.getElementById('aiInput');
-    const body = document.getElementById('aiBody');
-    if (input.value) {
-        body.innerHTML += `<p style="text-align:right; color:#00d2ff; margin-bottom:10px;">${input.value}</p>`;
-        input.value = '';
-        setTimeout(() => {
-            body.innerHTML += `<p style="background:#222; padding:10px; border-radius:10px; font-size:12px;">Paldies! Mēs drīz atbildēsim.</p>`;
-            body.scrollTop = body.scrollHeight;
-        }, 800);
+        try {
+            const response = await fetch('/api/send', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(formData)
+            });
+
+            if (response.ok) {
+                // Эффекты при успехе
+                form.classList.add('blur-effect');
+                const successPart = document.getElementById('successPart');
+                successPart.classList.add('active');
+                
+                // Анимация полоски прогресса
+                const progress = document.getElementById('progressBar');
+                progress.style.width = '100%';
+
+                // Очистка и закрытие через 4 секунды
+                setTimeout(() => {
+                    form.reset();
+                    form.classList.remove('blur-effect');
+                    successPart.classList.remove('active');
+                    previewContainer.style.display = 'none';
+                    previewImage.src = '';
+                    fileLabel.innerHTML = `<i class="fas fa-camera"></i> Pievienot auto foto`;
+                    fileLabel.style.borderColor = "#444";
+                    grecaptcha.reset();
+                    closeBooking(); // Закрываем модалку
+                    submitBtn.disabled = false;
+                    submitBtn.innerText = "Nosūtīt pieteikumu";
+                }, 4500);
+
+            } else {
+                alert("Kļūda nosūtot. Mēģiniet vēlreiz.");
+                submitBtn.disabled = false;
+                submitBtn.innerText = "Nosūtīt pieteikumu";
+            }
+        } catch (error) {
+            console.error(error);
+            alert("Servera kļūda.");
+            submitBtn.disabled = false;
+        }
+    };
+});
+
+// Глобальные функции для кнопок (если не в основном блоке)
+function changeLang(lang) {
+    if(lang === 'ru') {
+        alert("RU valoda drīz būs pieejama");
+    } else {
+        alert("LV valoda jau ir aktīva");
     }
 }
