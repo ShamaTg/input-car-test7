@@ -1,36 +1,16 @@
 const translations = {
-    lv: { 
-        hero_sub: "Profesionāls auto detailing un remonts 🛠️", 
-        btn_book: "PIETEIKTIES 📅", 
-        form_title: "PIETEIKTIES VIZĪTEI", 
-        btn_back: "← Atpakaļ", 
-        btn_send: "NOSŪTĪT", 
-        success_thanks: "NOSŪTĪTS!", 
-        success_msg: "Mēs sazināsimies ar Jums drīz."
-    },
-    ru: { 
-        hero_sub: "Профессиональный детейлинг и ремонт 🛠️", 
-        btn_book: "ЗАПИСАТЬСЯ 📅", 
-        form_title: "ЗАПИСАТЬСЯ НА ВИЗИТ", 
-        btn_back: "← Назад", 
-        btn_send: "ОТПРАВИТЬ", 
-        success_thanks: "ОТПРАВЛЕНО!", 
-        success_msg: "Мы свяжемся с Вами в ближайшее время."
-    }
+    lv: { hero_sub: "Profesionāls auto detailing un remonts 🛠️", btn_book: "PIETEIKTIES 📅", form_title: "PIETEIKTIES VIZĪTEI", btn_back: "← Atpakaļ", btn_send: "NOSŪTĪT", success_thanks: "NOSŪTĪTS!", success_msg: "Mēs sazināsimies ar Jums drīz." },
+    ru: { hero_sub: "Профессиональный детейлинг и ремонт 🛠️", btn_book: "ЗАПИСАТЬСЯ 📅", form_title: "ЗАПИСАТЬСЯ НА ВИЗИТ", btn_back: "← Назад", btn_send: "ОТПРАВИТЬ", success_thanks: "ОТПРАВЛЕНО!", success_msg: "Мы свяжемся с Вами в ближайшее время." }
 };
 
 function changeLang(lang) {
     document.querySelectorAll('[data-key]').forEach(el => {
         const key = el.getAttribute('data-key');
-        if (translations[lang] && translations[lang][key]) {
-            el.innerText = translations[lang][key];
-        }
+        if (translations[lang] && translations[lang][key]) el.innerText = translations[lang][key];
     });
 }
 
-function openBooking() { 
-    document.getElementById('modal-booking').style.display = 'flex'; 
-}
+function openBooking() { document.getElementById('modal-booking').style.display = 'flex'; }
 
 function closeBooking() { 
     document.getElementById('modal-booking').style.display = 'none';
@@ -44,11 +24,9 @@ document.getElementById('fileInput').onchange = function() {
     if(this.files[0]) document.getElementById('fileLabel').innerText = "✓ Foto pievienots";
 };
 
-// ЕДИНАЯ ЛОГИКА ОТПРАВКИ (VERCEL VERSION)
 document.getElementById('bookingForm').onsubmit = async function(e) {
     e.preventDefault();
 
-    // 1. Проверка капчи
     const captchaResponse = grecaptcha.getResponse();
     if (!captchaResponse) {
         alert("Lūdzu, apstipriniet, ka neesat robots!");
@@ -64,8 +42,7 @@ document.getElementById('bookingForm').onsubmit = async function(e) {
     const originalBtnText = btn.innerText;
     btn.innerText = "SŪTA...";
 
-    // 2. Сбор данных в объект JSON
-    // Примечание: Vercel Serverless функции проще всего работают с JSON.
+    // Собираем данные в JSON
     const formData = {
         name: document.getElementById('nameInput').value,
         phone: document.getElementById('phoneInput').value,
@@ -77,19 +54,15 @@ document.getElementById('bookingForm').onsubmit = async function(e) {
     };
 
     try {
-        // 3. Отправка на Vercel API
         const response = await fetch('/api/send', { 
             method: 'POST', 
-            headers: {
-                'Content-Type': 'application/json'
-            },
+            headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(formData) 
         });
         
         const result = await response.text();
 
-        if (result.includes("Success")) {
-            // 4. Анимация успеха
+        if (result === "Success") {
             form.style.filter = "blur(10px)";
             successToast.classList.add('active');
             setTimeout(() => { progress.style.width = "100%"; }, 100);
@@ -107,16 +80,13 @@ document.getElementById('bookingForm').onsubmit = async function(e) {
             btn.disabled = false;
             btn.innerText = originalBtnText;
         }
-
     } catch (error) {
-        console.error(error);
-        alert("Servera kļūda! Pārbaudiet interneta pieslēgumu.");
+        alert("Servera kļūda!");
         btn.disabled = false;
         btn.innerText = originalBtnText;
     }
 };
 
-// AI чат (без изменений)
 function toggleAI() { document.getElementById('aiWindow').classList.toggle('active'); }
 function aiSend() {
     const input = document.getElementById('aiInput');
